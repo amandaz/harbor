@@ -3,14 +3,14 @@
 The installation package file for each release can be downloaded from the [release tab](https://github.com/vmware/harbor/releases).
 ### Prerequisites for target machine
 Harbor is deployed as several docker containers.  Hence, it can be deployed on any Linux distribution. 
-Before deploying harbor, the target machine requires python, docker-engine, docker compose installede.  
-* Python needs to be verion 2.7 or higher.  Some Linux distributions (Gentoo, Arch) may not have a Python interpreter installed by default. On those systems, you need to install one.  
-* The docker engine needs to be version 1.8 or higher.  For the details to install docker engine, please refer to: https://docs.docker.com/engine/installation/
-* The docker-compose needs to be version 1.6.0 or higher.  For the details to install docker compose, please refer to: https://docs.docker.com/compose/install/
+Before deploying harbor, the target machine requires python, docker-engine, docker-compose installed.  
+* Python needs to be version 2.7 or higher.  Some Linux distributions (Gentoo, Arch) may not have a Python interpreter installed by default. On those systems, you need to install one.  
+* The docker engine needs to be version 1.8 or higher.  For the details to install docker engine, please refer to https://docs.docker.com/engine/installation/
+* The docker-compose needs to be version 1.6.0 or higher.  For the details to install docker compose, please refer to https://docs.docker.com/compose/install/
 
 ### Configure Harbor Parameters 
-Taking version 0.1.0 as an example, after downloading the package file **harbor-0.1.0.tgz** from release tab, you need to extract the package, make update to the parameters in the file **harbor.cfg**, execute the **prepare** script to generate configuration files for docker containers, and use docker-compose to start the service.  
-For simplest case, you only need to update the **hostname** attribute in **harbor.cfg** by updating the value to the IP or fully qualified hostname of your target machine, for example 192.168.1.10.  Please see the next section for the details of each attriubte.
+Taking version 0.1.0 as an example, after downloading the package file **harbor-0.1.0.tgz** from release tab, you need to extract the package, make the update to the parameters in the file **harbor.cfg**, execute the **prepare** script to generate configuration files for docker containers, and use docker-compose to start the service.  
+For simplest case, you only need to update the **hostname** attribute in **harbor.cfg** by updating the value to the IP or fully qualified hostname of your target machine, for example 192.168.1.10.  Please see the next section for the details of each attribute.
 ```
 $ tar -xzvf harbor-0.1.0.tgz
 $ cd harbor
@@ -37,7 +37,7 @@ After that, you can open your browser and access harbor via the IP you set in ha
 * email_from = admin <sample_admin@mydomain.com>  
 
 **harbor_admin_password**: The password for administrator of harbor, by default it is Harbor12345.  
-**auth_mode**: The authentication mode of harbor.  By default the it is *db_auth*, i.e. the credentials are stored in a databse. Please set it to *ldap_auth* if you want to verify user's credentials against an LDAP server.  
+**auth_mode**: The authentication mode of harbor.  By default the it is *db_auth*, i.e. the credentials are stored in a database. Please set it to *ldap_auth* if you want to verify user's credentials against an LDAP server.  
 **ldap_url**: The URL for LDAP endpoint, for example ldaps://ldap.mydomain.com. It is only used when **auth_mode** is set as *ldap_auth*.    
 **ldap_basedn**: The basedn template for verifying the user's credentials against LDAP, for example uid=%s,ou=people,dc=mydomain,dc=com.  It is only used when **auth_mode** set as *ldap_auth*.  
 **db_password**: The password of root user of mySQL database.
